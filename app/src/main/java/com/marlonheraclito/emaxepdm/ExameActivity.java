@@ -43,7 +43,7 @@ public class ExameActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_def_id:
-
+                openDefinicoes();
                 return true;
 
             case R.id.menu_sair_id:
@@ -64,7 +64,7 @@ public class ExameActivity extends AppCompatActivity {
                 Intent intent = new Intent(ExameActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
-              //  onDestroy();
+
             }
         });
         builder.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
@@ -118,6 +118,12 @@ public class ExameActivity extends AppCompatActivity {
                 onPause();
             }
         });
+    }
+
+    public void openDefinicoes(){
+        Intent in = new Intent(this, DefinicoesActivity.class);
+        startActivity(in);
+        onPause();
     }
 
     @Override
