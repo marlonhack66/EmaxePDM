@@ -43,6 +43,7 @@ public class ExameActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_def_id:
+
                 return true;
 
             case R.id.menu_sair_id:

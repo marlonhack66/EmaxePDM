@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.marlonheraclito.emaxepdm.controle.DaoUser;
 import com.marlonheraclito.emaxepdm.modelo.User;
 
+import java.util.List;
+
 public class RegisterActivity extends AppCompatActivity {
 
     Button btnCancel, btnRegister;
@@ -92,11 +94,19 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             User user = new User(email, pass1);
             try {
-                long res = dao.insert(user);
-                if (res > 0 ){
-                    Toast.makeText(this, "Registrado", Toast.LENGTH_SHORT).show();
-                    finish();
+                List<User> list = dao.select();
+                for(int i = 0; i < list.size(); i ++){
+                    if(email.equals(list.get(i).getEmail())){
+                        Toast.makeText(this, "Este email ja existe", Toast.LENGTH_SHORT).show();
+                    } else {
+                        long res = dao.insert(user);
+                        if (res > 0 ){
+                            Toast.makeText(this, "Registrado", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
                 }
+
             } catch (Exception e) {
                 Log.i("Erro", String.valueOf(e));
             }
